@@ -8,4 +8,18 @@ def structure_creator (names, goals, goals_avoided, assists):
                                "Asistencias:": assist}
     return new_structure
 
+# Funcion encargada de devolver el nombre y cantidad de goles del goleador.
 
+def best_scorer (new_structure):
+    max_name = max(new_structure, key=lambda x: new_structure[x]["Goles:"])
+    max_goals = new_structure[max_name]["Goles:"]
+    return max_name, max_goals
+
+# Funcion encargada de devolver el nombre del jugador mas influyente.
+
+def best_player (new_structure):
+    max_player = max(new_structure, key=lambda x: new_structure[x]["Goles:"]*1.5
+                     + new_structure[x]["Goles evitados:"]*1.25
+                     + new_structure[x]["Asistencias:"])
+    return max_player
+    
